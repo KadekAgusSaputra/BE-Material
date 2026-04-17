@@ -1,0 +1,17 @@
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Controller\IncomeController.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Dto\DashboardDTO.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Dto\IncomeDTO.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Dto\LaporanDTO.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Dto\MaterialPriceDto.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Dto\VehiclesDTO.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Entity\Expenses.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Entity\Income.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Entity\MaterialPrices.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Entity\VehicleCategory.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Entity\Vehicles.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\MaterialApplication.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Repository\ExpensesRepository.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Repository\IncomeRepository.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Repository\MaterialPricesRepository.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Repository\VehiclesRepository.java
+C:\Users\Microsoft\Downloads\material\material\src\main\java\com\kadek\material\Service\IncomeService.java

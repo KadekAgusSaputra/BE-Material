@@ -1,0 +1,17 @@
+com\kadek\material\Entity\VehicleCategory.class
+com\kadek\material\Service\IncomeService.class
+com\kadek\material\Controller\IncomeController.class
+com\kadek\material\Repository\ExpensesRepository.class
+com\kadek\material\Repository\IncomeRepository.class
+com\kadek\material\Dto\DashboardDTO.class
+com\kadek\material\Entity\Income.class
+com\kadek\material\Dto\VehiclesDTO.class
+com\kadek\material\Entity\MaterialPrices.class
+com\kadek\material\Dto\LaporanDTO.class
+com\kadek\material\Repository\VehiclesRepository.class
+com\kadek\material\Repository\MaterialPricesRepository.class
+com\kadek\material\Dto\IncomeDTO.class
+com\kadek\material\Entity\Vehicles.class
+com\kadek\material\Dto\MaterialPriceDto.class
+com\kadek\material\Entity\Expenses.class
+com\kadek\material\MaterialApplication.class
