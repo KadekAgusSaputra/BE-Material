@@ -1,11 +1,12 @@
-# 1. Ambil 'lingkungan' Java dari internet
-FROM openjdk:17-jdk-slim
+# Gunakan Eclipse Temurin, ini lebih stabil dan didukung banyak platform cloud
+FROM eclipse-temurin:17-jdk-alpine
 
-# 2. Masukkan file .jar hasil build kamu ke dalam Docker
+# Buat folder kerja di dalam Docker
+WORKDIR /app
+
+# Copy file .jar dari folder target (hasil build kamu) ke dalam Docker
+# Pastikan nama file .jar kamu sesuai. Kalau namanya beda, ganti 'target/*.jar' jadi nama spesifik filenya
 COPY target/*.jar app.jar
 
-# 3. Kasih tahu Docker untuk buka pintu (port) 8080
-EXPOSE 8080
-
-# 4. Perintah untuk menyalakan aplikasinya
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Jalankan aplikasinya
+ENTRYPOINT ["java", "-jar", "app.jar"]
