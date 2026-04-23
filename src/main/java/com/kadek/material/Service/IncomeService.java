@@ -50,14 +50,26 @@ public class IncomeService {
         Income income = new Income();
         income.setVehicleId(findIdVehicle.get());
         income.setMaterialName(incomeDTO.getMaterialName());
-        BigDecimal amount = materialPrices.getPrice();
-        income.setAmount(amount);
+        BigDecimal amount = materialPrices.getSellPrice();
+        income.setSellPrice(amount);
+        income.setBuyPrice(materialPrices.getBuyPrice());
         income.setQuantity(incomeDTO.getQuantity());
-        BigDecimal totalPrice;
-        totalPrice = amount
+        // 1. Hitung Total Jual (Omzet)
+        BigDecimal totalSell = amount
                 .multiply(incomeDTO.getQuantity())
                 .setScale(2, RoundingMode.HALF_UP);
-        income.setTotalPrice(totalPrice);
+
+        // 2. Hitung Total Modal Material (Harga Beli x Qty)
+        BigDecimal totalBuy = materialPrices.getBuyPrice()
+                .multiply(incomeDTO.getQuantity())
+                .setScale(2, RoundingMode.HALF_UP);
+
+        // 3. Hitung Laba Bersih (Total Jual - Total Modal - Biaya Operasional)
+        BigDecimal netProfit = totalSell
+                .subtract(totalBuy)
+                .subtract(incomeDTO.getExpensesAmount() != null ? incomeDTO.getExpensesAmount() : BigDecimal.ZERO);
+
+        income.setTotalPrice(netProfit);
         income.setTransactionDate(incomeDTO.getTransactionDate());
 
         Income entity = incomeRepository.save(income);
@@ -107,11 +119,25 @@ public class IncomeService {
 
         oldIncome.setVehicleId(findIdVehicle.get());
         oldIncome.setMaterialName(finalMaterial);
-        BigDecimal amount = materialPrices.getPrice();
-        oldIncome.setAmount(amount);
+        BigDecimal amount = materialPrices.getSellPrice();
+        oldIncome.setSellPrice(amount);
+        oldIncome.setBuyPrice(materialPrices.getBuyPrice());
         oldIncome.setQuantity(finalQuantity);
-        BigDecimal totalPrice = amount.multiply(finalQuantity);
-        oldIncome.setTotalPrice(totalPrice);
+        // 1. Hitung Total Jual (Omzet)
+        BigDecimal totalSell = amount
+                .multiply(finalQuantity)
+                .setScale(2, RoundingMode.HALF_UP);
+
+        // 2. Hitung Total Modal Material (Harga Beli x Qty)
+        BigDecimal totalBuy = materialPrices.getBuyPrice()
+                .multiply(finalQuantity)
+                .setScale(2, RoundingMode.HALF_UP);
+
+        // 3. Hitung Laba Bersih (Total Jual - Total Modal - Biaya Operasional)
+        BigDecimal netProfit = totalSell
+                .subtract(totalBuy)
+                .subtract(incomeDTO.getExpensesAmount() != null ? incomeDTO.getExpensesAmount() : BigDecimal.ZERO);
+        oldIncome.setTotalPrice(netProfit);
         oldIncome.setTransactionDate(finalDate);
 
         incomeRepository.save(oldIncome);
@@ -217,7 +243,7 @@ public class IncomeService {
     private MaterialPriceDto convertMaterialPriceDto(MaterialPrices entity){
         MaterialPriceDto response = new MaterialPriceDto();
         response.setMaterialName(entity.getMaterialName());
-        response.setAmount(entity.getPrice());
+        response.setAmount(entity.getSellPrice());
         return response;
     }
 
@@ -227,7 +253,8 @@ public class IncomeService {
         response.setVehicleId(entity.getVehicleId().getId());
         response.setTruckName(entity.getVehicleId().getTruckName());
         response.setMaterialName(entity.getMaterialName());
-        response.setAmount(entity.getAmount());
+        response.setSellPrice(entity.getSellPrice());
+        response.setBuyPrice(entity.getBuyPrice());
         response.setQuantity(entity.getQuantity());
         response.setTotalPrice(entity.getTotalPrice());
         response.setTransactionDate(entity.getTransactionDate());

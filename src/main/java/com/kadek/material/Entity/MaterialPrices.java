@@ -20,8 +20,10 @@ public class MaterialPrices {
     @Column(name = "CATEGORY")
     @Enumerated(EnumType.STRING)
     private VehicleCategory category;
-    @Column(name = "PRICE")
-    private BigDecimal price;
+    @Column(name = "SELL_PRICE")
+    private BigDecimal sellPrice;
+    @Column(name = "BUY_PRICE")
+    private BigDecimal buyPrice;
     @Column(name = "DESCRIPTION")
     private String description;
 }

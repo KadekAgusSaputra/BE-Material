@@ -1,7 +1,5 @@
 package com.kadek.material.Dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -15,7 +13,8 @@ public class IncomeDTO {
     private Long vehicleId;
     private String truckName;
     private String materialName;
-    private BigDecimal amount;
+    private BigDecimal sellPrice;
+    private BigDecimal buyPrice;
     private BigDecimal quantity;
     private BigDecimal totalPrice;
     private LocalDate transactionDate;

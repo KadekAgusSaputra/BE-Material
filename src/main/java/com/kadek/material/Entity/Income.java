@@ -21,8 +21,10 @@ public class Income {
     private Vehicles vehicleId;
     @Column(name = "MATERIAL_NAME")
     private String materialName;
-    @Column(name = "AMOUNT")
-    private BigDecimal amount;
+    @Column(name = "SELL_PRICE")
+    private BigDecimal sellPrice;
+    @Column(name = "BUY_PRICE")
+    private BigDecimal buyPrice;
     @Column(name = "QUANTITY")
     private BigDecimal quantity;
     @Column(name = "TOTAL_PRICE")
