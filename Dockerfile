@@ -1,12 +1,13 @@
-# Gunakan Eclipse Temurin, ini lebih stabil dan didukung banyak platform cloud
+# Gunakan JDK 17
 FROM eclipse-temurin:17-jdk-alpine
 
-# Buat folder kerja di dalam Docker
 WORKDIR /app
 
-# Copy file .jar dari folder target (hasil build kamu) ke dalam Docker
-# Pastikan nama file .jar kamu sesuai. Kalau namanya beda, ganti 'target/*.jar' jadi nama spesifik filenya
+# Copy file jar hasil build (pastikan kamu sudah run 'mvn clean package' di lokal)
 COPY target/*.jar app.jar
 
-# Jalankan aplikasinya
+# Expose port agar bisa diakses luar
+EXPOSE 8080
+
+# Jalankan aplikasi
 ENTRYPOINT ["java", "-jar", "app.jar"]
