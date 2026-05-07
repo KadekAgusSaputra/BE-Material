@@ -7,6 +7,9 @@ import com.kadek.material.Repository.IncomeRepository;
 import com.kadek.material.Repository.MaterialPricesRepository;
 import com.kadek.material.Repository.VehiclesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -175,11 +178,11 @@ public class IncomeService {
         return convertToResponseDTO(oldIncome,incomeDTO);
     }
 
-    public List<IncomeDTO> getAllTransaction(){
-        return incomeRepository.findAll(Sort.by(Sort.Direction.DESC, "id"))
-                .stream()
-                .map(income -> convertToResponseDTO(income,new IncomeDTO()))
-                .collect(Collectors.toList());
+    public Page<IncomeDTO> getAllData(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Income> incomePage = incomeRepository.findAllByOrderByIdDesc(pageable);
+
+        return incomePage.map(entity -> convertToResponseDTO(entity, new IncomeDTO()));
     }
 
     public List<VehiclesDTO> getAllVehicle() {

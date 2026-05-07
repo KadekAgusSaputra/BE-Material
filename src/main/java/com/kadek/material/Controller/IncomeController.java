@@ -1,8 +1,10 @@
 package com.kadek.material.Controller;
 
 import com.kadek.material.Dto.*;
+import com.kadek.material.Entity.Income;
 import com.kadek.material.Service.IncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,9 +38,11 @@ public class IncomeController {
     }
 
     @GetMapping("transaction")
-    public ResponseEntity<List<IncomeDTO>> getAllTransaction(){
-        List<IncomeDTO> transaction = incomeService.getAllTransaction();
-        return ResponseEntity.ok(transaction);
+    public ResponseEntity<Page<IncomeDTO>> getAllData(  // ← ganti Page<Income> jadi Page<IncomeDTO>
+                                                        @RequestParam(defaultValue = "0") int page,
+                                                        @RequestParam(defaultValue = "5") int size
+    ) {
+        return ResponseEntity.ok(incomeService.getAllData(page, size));
     }
 
     @GetMapping("transaction/{id}")

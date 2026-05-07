@@ -3,6 +3,8 @@ package com.kadek.material.Repository;
 import com.kadek.material.Dto.DashboardDTO;
 import com.kadek.material.Dto.LaporanDTO;
 import com.kadek.material.Entity.Income;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -31,6 +33,8 @@ public interface IncomeRepository extends JpaRepository<Income,Long> {
             "SUM((i.sellPrice - i.buyPrice) * i.quantity) - (SELECT COALESCE(SUM(e.amount), 0) FROM Expenses e)) " +
             "FROM Income i")
     LaporanDTO getGrandTotalReport();
+
+    Page<Income> findAllByOrderByIdDesc(Pageable pageable);
 
 }
 
